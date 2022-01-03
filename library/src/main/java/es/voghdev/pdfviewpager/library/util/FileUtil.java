@@ -42,6 +42,9 @@ public class FileUtil {
     }
 
     public static String extractFileNameFromURL(String url) {
-        return url.substring(url.lastIndexOf('/') + 1);
+        String fileName = url.substring(url.lastIndexOf('/') + 1);
+        if (fileName.length() > 25)
+            fileName = fileName.substring(0, 20);
+        return fileName;
     }
 }
