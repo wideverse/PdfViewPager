@@ -23,9 +23,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import es.voghdev.pdfviewpager.library.R;
-import es.voghdev.pdfviewpager.library.subscaleview.ImageSource;
-import es.voghdev.pdfviewpager.library.subscaleview.SubsamplingScaleImageView;
 import es.voghdev.pdfviewpager.library.util.EmptyClickListener;
 
 public class PDFPagerAdapter extends BasePDFPagerAdapter {
@@ -47,7 +46,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
     @SuppressWarnings("NewApi")
     public Object instantiateItem(ViewGroup container, int position) {
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
-        SubsamplingScaleImageView ssiv = v.findViewById(R.id.subsamplingImageView);
+        PhotoView ssiv = v.findViewById(R.id.subsamplingImageView);
 
         if (renderer == null || getCount() < position) {
             return v;
@@ -56,7 +55,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         PdfRenderer.Page page = getPDFPage(renderer, position);
 
         Bitmap bitmap = bitmapContainer.get(position);
-        ssiv.setImage(ImageSource.bitmap(bitmap));
+        ssiv.setImageBitmap(bitmap);
 
         ssiv.setOnClickListener(new View.OnClickListener() {
             @Override
