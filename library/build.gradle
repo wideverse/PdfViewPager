@@ -61,7 +61,7 @@ task checkstyle(type: Checkstyle) {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.github.wideverse:PhotoView:c286db1d8332b6aa7cf1ee0e2c417966400ead5f'
+    implementation 'com.github.wideverse:PhotoView:2c1461585dfeb80de5faa82f713f9099837f68e2'
 }
 
 // Bintray installing and uploading scripts
