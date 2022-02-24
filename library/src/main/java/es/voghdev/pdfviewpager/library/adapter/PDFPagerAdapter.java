@@ -31,6 +31,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
     private static final float DEFAULT_SCALE = 1f;
 
+    private PhotoView ssiv;
     PdfScale scale = new PdfScale();
     View.OnClickListener pageClickListener = new EmptyClickListener();
 
@@ -46,8 +47,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
     @SuppressWarnings("NewApi")
     public Object instantiateItem(ViewGroup container, int position) {
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
-        PhotoView ssiv = v.findViewById(R.id.subsamplingImageView);
-
+        ssiv = v.findViewById(R.id.subsamplingImageView);
         if (renderer == null || getCount() < position) {
             return v;
         }
@@ -70,6 +70,14 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         container.addView(v, 0);
 
         return v;
+    }
+
+    public boolean isZoomed(){
+        if (ssiv != null && ssiv.isZoomed()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
