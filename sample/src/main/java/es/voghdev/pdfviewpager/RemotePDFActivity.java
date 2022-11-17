@@ -15,16 +15,16 @@
  */
 package es.voghdev.pdfviewpager;
 
+import static android.view.KeyEvent.KEYCODE_MENU;
+
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
-import com.github.chrisbanes.photoview.PhotoView;
-
 import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
@@ -36,6 +36,9 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
     EditText etPdfUrl;
     Button btnDownload;
     PDFPagerAdapter adapter;
+
+    Float defaultPdfMaxScale = 7.0f;
+    Float defaultPdfMinScale = 1.0f;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,14 +116,29 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
 
     }
 
+    // zoom gesture for vuzix
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (adapter!=null && adapter.getSsiv() != null) {
-            return adapter.getSsiv().onKeyDown(keyCode, event);
-            // set scale here ???
+        switch (keyCode){
+            case KEYCODE_MENU:
+                return zoomIn();
+            default:
+                return super.onKeyDown(keyCode, event);
         }
-        else
-            return false;
     }
+
+    private boolean zoomIn() {
+        Log.d("test-gestures", "zoom in");
+        if (remotePDFViewPager.getScaleX() == remotePDFViewPager.getScaleY()
+                && remotePDFViewPager.getScaleX() < defaultPdfMaxScale - 2f){
+            remotePDFViewPager.setScaleX(remotePDFViewPager.getScaleX() + 2f);
+            remotePDFViewPager.setScaleY(remotePDFViewPager.getScaleY() + 2f);
+        } else {
+            remotePDFViewPager.setScaleX(defaultPdfMinScale);
+            remotePDFViewPager.setScaleY(defaultPdfMinScale);
+        }
+        return true;
+    }
+
 }
 
