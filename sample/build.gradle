@@ -41,6 +41,8 @@ dependencies{
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation project(":library")
 
+    implementation 'com.github.wideverse:PhotoView:7877127886e5ce6ab847935f29d2a074c3b54c32'
+
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'

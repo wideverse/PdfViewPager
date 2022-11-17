@@ -31,7 +31,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
     private static final float DEFAULT_SCALE = 1f;
 
-    private PhotoView ssiv;
+    PhotoView ssiv;
     PdfScale scale = new PdfScale();
     View.OnClickListener pageClickListener = new EmptyClickListener();
 
@@ -41,6 +41,10 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
     public PDFPagerAdapter(Context context, String pdfPath, PdfErrorHandler errorHandler) {
         super(context, pdfPath, errorHandler);
+    }
+
+    public PhotoView getSsiv() {
+        return ssiv;
     }
 
     @Override

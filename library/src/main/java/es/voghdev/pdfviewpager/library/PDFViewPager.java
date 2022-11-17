@@ -18,6 +18,7 @@ package es.voghdev.pdfviewpager.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 
 import androidx.viewpager.widget.ViewPager;

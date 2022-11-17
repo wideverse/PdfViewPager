@@ -17,10 +17,13 @@ package es.voghdev.pdfviewpager;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
+import com.github.chrisbanes.photoview.PhotoView;
 
 import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
@@ -108,6 +111,16 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
     @Override
     public void onProgressUpdate(int progress, int total) {
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (adapter!=null && adapter.getSsiv() != null) {
+            return adapter.getSsiv().onKeyDown(keyCode, event);
+            // set scale here ???
+        }
+        else
+            return false;
     }
 }
 
