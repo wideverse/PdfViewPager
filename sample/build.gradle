@@ -41,7 +41,7 @@ dependencies{
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation project(":library")
 
-    implementation 'com.github.wideverse:PhotoView:7877127886e5ce6ab847935f29d2a074c3b54c32'
+    implementation 'com.github.wideverse:PhotoView:bc9c6426126442189a4473583e31f834386477f8'
 
     testImplementation 'junit:junit:4.12'
 

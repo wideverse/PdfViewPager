@@ -76,13 +76,13 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         return v;
     }
 
-    public boolean isZoomed(){
-        if (ssiv != null && ssiv.isZoomed()){
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean isZoomed(){
+//        if (ssiv != null && ssiv.isZoomed()){
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     @Override
     public void close() {

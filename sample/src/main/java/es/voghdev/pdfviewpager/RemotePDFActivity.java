@@ -15,6 +15,10 @@
  */
 package es.voghdev.pdfviewpager;
 
+import static android.view.KeyEvent.KEYCODE_DPAD_DOWN;
+import static android.view.KeyEvent.KEYCODE_DPAD_LEFT;
+import static android.view.KeyEvent.KEYCODE_DPAD_RIGHT;
+import static android.view.KeyEvent.KEYCODE_DPAD_UP;
 import static android.view.KeyEvent.KEYCODE_MENU;
 
 import android.content.Context;
@@ -39,6 +43,8 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
 
     Float defaultPdfMaxScale = 7.0f;
     Float defaultPdfMinScale = 1.0f;
+
+    Float navigationDelta = 25f;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,12 +122,20 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
 
     }
 
-    // zoom gesture for vuzix
+    // zoom and navigation gestures for vuzix
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode){
             case KEYCODE_MENU:
                 return zoomIn();
+            case KEYCODE_DPAD_RIGHT:
+                return moveToRight();
+            case KEYCODE_DPAD_LEFT:
+                return moveToLeft();
+            case KEYCODE_DPAD_UP:
+                return moveUp();
+            case KEYCODE_DPAD_DOWN:
+                return moveDown();
             default:
                 return super.onKeyDown(keyCode, event);
         }
@@ -137,6 +151,26 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
             remotePDFViewPager.setScaleX(defaultPdfMinScale);
             remotePDFViewPager.setScaleY(defaultPdfMinScale);
         }
+        return true;
+    }
+
+    private boolean moveUp() {
+        remotePDFViewPager.setPivotY(remotePDFViewPager.getPivotY() - navigationDelta);
+        return true;
+    }
+
+    private boolean moveDown() {
+        remotePDFViewPager.setPivotY(remotePDFViewPager.getPivotY() + navigationDelta);
+        return true;
+    }
+
+    public boolean moveToRight() {
+        remotePDFViewPager.setPivotX(remotePDFViewPager.getPivotX() + navigationDelta);
+        return true;
+    }
+
+    public boolean moveToLeft() {
+        remotePDFViewPager.setPivotX(remotePDFViewPager.getPivotX() - navigationDelta);
         return true;
     }
 
