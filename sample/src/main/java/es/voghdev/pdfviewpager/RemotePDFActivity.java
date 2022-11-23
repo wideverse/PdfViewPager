@@ -43,7 +43,6 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
 
     Float defaultPdfMaxScale = 7.0f;
     Float defaultPdfMinScale = 1.0f;
-
     Float navigationDelta = 25f;
 
     @Override
@@ -143,35 +142,50 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
 
     private boolean zoomIn() {
         Log.d("test-gestures", "zoom in");
-        if (remotePDFViewPager.getScaleX() == remotePDFViewPager.getScaleY()
-                && remotePDFViewPager.getScaleX() < defaultPdfMaxScale - 2f){
-            remotePDFViewPager.setScaleX(remotePDFViewPager.getScaleX() + 2f);
-            remotePDFViewPager.setScaleY(remotePDFViewPager.getScaleY() + 2f);
-        } else {
-            remotePDFViewPager.setScaleX(defaultPdfMinScale);
-            remotePDFViewPager.setScaleY(defaultPdfMinScale);
+        if (remotePDFViewPager != null) {
+            if (remotePDFViewPager.getScaleX() == remotePDFViewPager.getScaleY()
+                    && remotePDFViewPager.getScaleX() < defaultPdfMaxScale - 1.5f) {
+                remotePDFViewPager.setScaleX(remotePDFViewPager.getScaleX() + 1.5f);
+                remotePDFViewPager.setScaleY(remotePDFViewPager.getScaleY() + 1.5f);
+            } else {
+                remotePDFViewPager.setScaleX(defaultPdfMinScale);
+                remotePDFViewPager.setScaleY(defaultPdfMinScale);
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean moveUp() {
-        remotePDFViewPager.setPivotY(remotePDFViewPager.getPivotY() - navigationDelta);
-        return true;
+        if (remotePDFViewPager != null) {
+            remotePDFViewPager.setPivotY(remotePDFViewPager.getPivotY() - navigationDelta);
+            return true;
+        }
+        return false;
     }
 
     private boolean moveDown() {
-        remotePDFViewPager.setPivotY(remotePDFViewPager.getPivotY() + navigationDelta);
-        return true;
+        if (remotePDFViewPager != null) {
+            remotePDFViewPager.setPivotY(remotePDFViewPager.getPivotY() + navigationDelta);
+            return true;
+        }
+        return false;
     }
 
     public boolean moveToRight() {
-        remotePDFViewPager.setPivotX(remotePDFViewPager.getPivotX() + navigationDelta);
-        return true;
+        if (remotePDFViewPager != null) {
+            remotePDFViewPager.setPivotX(remotePDFViewPager.getPivotX() + navigationDelta);
+            return true;
+        }
+        return false;
     }
 
     public boolean moveToLeft() {
-        remotePDFViewPager.setPivotX(remotePDFViewPager.getPivotX() - navigationDelta);
-        return true;
+        if (remotePDFViewPager != null) {
+            remotePDFViewPager.setPivotX(remotePDFViewPager.getPivotX() - navigationDelta);
+            return true;
+        }
+        return false;
     }
 
 }
